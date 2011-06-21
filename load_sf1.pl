@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 use feature ':5.10.0';
-use Data::Dump qw( dump ); $| = 1;
+#use Data::Dump qw( dump ); $| = 1;
 
 use DBI;
 
