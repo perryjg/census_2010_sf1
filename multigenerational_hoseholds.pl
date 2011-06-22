@@ -13,7 +13,8 @@
 #    HWEIGHT    INT,
 #    PERSONS    INT,
 #    NPF        INT,
-#    MGF        INT,
+#    MGF        CHAR(1),
+#    RACE       CHAR(1),
 #    PRIMARY KEY ( SERIALNO )
 #  ) ENGINE=MYISAM CHARSET=latin1
 
@@ -29,7 +30,7 @@ my $dbpswd = '';
 my $dbname = 'census_pums_2000';
 my $dbh = DBI->connect( "dbi:mysql:database=$dbname", $dbuser, $dbpswd );
 
-my @fields = qw( SERIALNO PUMA5 PUMA1 MSACMSA5 HWEIGHT PERSONS NPF MGF );
+my @fields = qw( SERIALNO PUMA5 PUMA1 MSACMSA5 HWEIGHT PERSONS NPF MGF RACE );
 my $hholder_race_sql = <<'.';
 SELECT RACE1
 FROM persons
@@ -51,7 +52,7 @@ my $hholds = $dbh->prepare( $hh_select_sql );
 $hholds->execute;
 my $insert_sql = <<'.';
 INSERT INTO multigen
-VALUES(?,?,?,?,?,?,?,?)
+VALUES(?,?,?,?,?,?,?,?,?)
 .
 my $insert = $dbh->prepare( $insert_sql );
 
