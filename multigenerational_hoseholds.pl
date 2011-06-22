@@ -1,4 +1,9 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
+#
+#  Script genrates table of family households from census 2000 PUMS data
+#  coded (in the MGF field) by whether they include three or more generations.
+#  Assumes that PUMS household table is called 'households' and that the person
+#  table is named 'persons'.
 #
 #  CREATE TABLE multigen (
 #    SERIALNO   CHAR(7),
