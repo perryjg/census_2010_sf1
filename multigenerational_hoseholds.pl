@@ -21,7 +21,8 @@ use DBI;
 
 my $dbuser = '';
 my $dbpswd = '';
-my $dbh = DBI->connect( 'dbi:mysql:database=census_pums_2000', $dbuser, $dbpswd );
+my $dbname = 'census_pums_2000';
+my $dbh = DBI->connect( "dbi:mysql:database=$dbname", $dbuser, $dbpswd );
 
 my @fields = qw( SERIALNO PUMA5 PUMA1 MSACMSA5 HWEIGHT PERSONS NPF MGF );
 my $hholder_race_sql = <<'.';
