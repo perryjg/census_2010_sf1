@@ -1,3 +1,4 @@
+/* compare unmaprried partner haousehols, 2000-2010 by couynty */
 SELECT * FROM (
   SELECT geo.county,
          d.PCT014001 AS total_00,
@@ -25,3 +26,12 @@ JOIN (
   WHERE geo.SUMLEV = '050'
 ) b USING( county )
 
+/* Presence of same-sex unmarried partner households by tract */
+SELECT geo.county, geo.tract,
+       d.PCT0150001 AS total,
+       d.PCT0150014 + d.PCT0150024 AS ss_un_part_cnt,
+       ROUND( (d.PCT0150014 + d.PCT0150024) / d.PCT0150001 * 100, 2 ) AS ss_un_part_pct,
+       CONCAT(geo.state, geo.county, geo.tract) AS geoid
+FROM census_sf1_2010.sf1_geo geo
+JOIN census_sf1_2010.sf1_p18 d USING(LOGRECNO)
+WHERE geo.SUMLEV = '140'
