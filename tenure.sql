@@ -93,7 +93,8 @@ SELECT ag.SUMLEV, ag.COUNTY,
        ad.H0170017 + ad.H0170018 AS rent_5564_10,
        ad.H0170019 AS rent_6574_10,
        ad.H0170020 AS rent_7584_10,
-       ad.H0170021 AS rent_85_10
+       ad.H0170021 AS rent_85_10,
+       CONCAT(ag.state, ag.county, ag.tract) AS geoid
 FROM census_sf1_2010.sf1_p44 ad
 JOIN census_sf1_2010.sf1_geo ag USING(LOGRECNO)
 WHERE ag.SUMLEV = '140'

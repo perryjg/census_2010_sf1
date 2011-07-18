@@ -1,3 +1,4 @@
+/* compare tenure by race of householder, 2000-2010 by couynty */
 SELECT a.county,
        a.total AS total_00, b.total AS total_10,
        a.white AS white_00, b.white AS white_10,
@@ -42,3 +43,22 @@ FROM (
   WHERE g.sumlev = '050'
 ) b USING( county )
 
+
+
+
+SELECT g.county, g.tract,
+       d44.H0140001 AS hh,
+       ROUND( d44.H0140002 / d44.H0140001 * 100, 2 ) AS total,
+       ROUND( d44.H0140003 / ( d44.H0140003 + d44.H0140011 ) * 100, 2 ) AS white,
+       ROUND( d44.H0140004 / ( d44.H0140004 + d44.H0140012 ) * 100, 2 ) AS black,
+       ROUND( d44.H0140005 / ( d44.H0140005 + d44.H0140013 ) * 100, 2 ) AS amind,
+       ROUND( d44.H0140006 / ( d44.H0140006 + d44.H0140014 ) * 100, 2 ) AS asian,
+       ROUND( d44.H0140007 / ( d44.H0140007 + d44.H0140015 ) * 100, 2 ) AS pacisl,
+       ROUND( d44.H0140008 / ( d44.H0140008 + d44.H0140016 ) * 100, 2 ) AS other,
+       ROUND( d44.H0140009 / ( d44.H0140009 + d44.H0140017 ) * 100, 2 ) AS multi,
+       ROUND( d45.H016H0002 / d45.H016H0001 * 100, 2 ) AS hisp,
+       CONCAT(g.state, g.county, g.tract) AS geoid
+FROM census_sf1_2010.sf1_geo g
+JOIN census_sf1_2010.sf1_p44 d44 USING( LOGRECNO )
+JOIN census_sf1_2010.sf1_p45 d45 USING( LOGRECNO )
+WHERE g.sumlev = '140'
