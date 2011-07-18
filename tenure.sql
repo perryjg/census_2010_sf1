@@ -1,4 +1,4 @@
-/* tenure comparison 2000 to 2010 by county */
+/* tenure by age of householder comparison 2000 to 2010 by county */
 SELECT a.COUNTY,
        a.total_00, b.total_10,
        
@@ -73,7 +73,7 @@ JOIN (
 ) b ON a.COUNTY = b.COUNTY 
 
 
-/* tenure by tract */
+/* tenure by age of householder by tract */
 SELECT ag.SUMLEV, ag.COUNTY,
        ad.H0170001 AS total_10,
        ad.H0170002 AS own_10,

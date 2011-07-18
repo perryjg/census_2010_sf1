@@ -7,7 +7,7 @@ SELECT * FROM (
          d.PCT014004 AS mf_00,
          d.PCT014005 AS ff_00,
          d.PCT014006 AS fm_00,
-         d.PCT014003 + d.PCT014006 AS ss_unmarried_partners_00
+         d.PCT014003 + d.PCT014005 AS ss_unmarried_partners_00
   FROM census_sf1_2000.sf1_geo geo
   JOIN census_sf1_2000.sf1_seg15 d USING(LOGRECNO)
   WHERE geo.SUMLEV = '050'
